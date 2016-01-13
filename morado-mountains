@@ -1,0 +1,60 @@
+var mountain = function(x, y, sz, br){
+    noStroke();
+    fill(29, 9, 39, br);
+    triangle(x-(sz/5), y, x+(sz/5), y, x, y-(sz));
+    fill(255, 255, 255, br/2);
+    triangle(x-(sz/16), y-sz*0.7, x + sz/16, y-sz*0.7, x, y-sz);
+};
+
+background(0, 0, 0);
+
+mountain(200, 350, 172, 255);
+mountain(285, 350, 245, 255);
+mountain(360, 350, 125,255);
+mountain(135, 350, 140,255);
+mountain(66, 350, 200,255);
+mountain(420, 350, 172,255);
+mountain(-8, 350, 172,255);
+
+mountain(235, 350, 162, 200);
+mountain(167, 350, 235, 200);
+mountain(107, 350, 115, 200);
+mountain(333, 350, 130, 200);
+mountain(26, 350, 190, 200);
+mountain(383, 350, 162, 200);
+mountain(-8, 350, 162, 200);
+
+for(var i = 400; i > 200; i -= 1){
+    stroke(255, 255, 255, i/3 - 80);
+    line(0, i, 400, i);
+}
+
+noStroke();
+fill(36, 36, 36);
+beginShape();
+vertex(0, 400);
+vertex(400, 400);
+vertex(400, 320);
+vertex(372, 301);
+vertex(348, 304);
+vertex(332, 338);
+vertex(299, 330);
+vertex(279, 340);
+vertex(254, 338);
+vertex(232, 334);
+vertex(200, 336);
+vertex(174, 345);
+vertex(138, 338);
+vertex(127, 329);
+vertex(73, 324);
+vertex(51, 329);
+vertex(23, 329);
+vertex(-4, 314);
+endShape();
+
+for(var i = 0; i < 236; i += 5){
+    fill(255, 255, 255, i/100);
+    ellipse(85, 70, i, i);
+}
+fill(189, 189, 189);
+ellipse(85, 70, 60, 60);
