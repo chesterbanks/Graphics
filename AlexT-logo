@@ -1,0 +1,57 @@
+var logo = function(){
+    var l = function(){
+        beginShape();
+        vertex(-15, 280);
+        vertex(40, 130);
+        vertex(100, 280);
+        vertex(350, 280);
+        vertex(350, 130);
+        vertex(300, 130);
+        vertex(390, 130);
+        endShape();
+        
+        beginShape();
+        vertex(85, 175);
+        vertex(120, 260);
+        vertex(260, 260);
+        vertex(320, 175);
+        endShape();
+        
+        beginShape();
+        vertex(172, 175);
+        vertex(255, 175);
+        vertex(320, 260);
+        endShape();
+        
+        line(172, 210, 240, 210);
+    };
+    
+    background(41, 41, 41);
+    noStroke();
+    for (var x = 0; x < 400; x += 50){
+        for (var y = 0; y < 400; y+= 50){
+            var choice = floor(random(0,2));
+                if (choice === 0){
+                    fill(255,255,255,random(0,10));
+                }else if (choice === 1){
+                    fill(255, 255, 255,random(20, 30));
+                }
+            rect(x,y,50,50);
+        }
+    }
+    
+    noFill();
+    strokeCap(PROJECT);
+    strokeWeight(18);
+    stroke(255, 0, 0);
+    l();
+    
+    for(var i = 28; i > 5; i -= 3){
+        strokeWeight(i);
+        stroke(0, 0, 0, i);
+        
+        l();
+    }
+};
+
+logo();
