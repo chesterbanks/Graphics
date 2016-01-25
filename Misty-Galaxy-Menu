@@ -2,9 +2,9 @@ textFont(createFont("Segoe UI Bold"));
 textAlign(CENTER, CENTER);
 
 var stars = [];
-for(var i = -width*2; i < width; i += 25){
-    for(var j = -height*2; j < height; j += 25){
-        stars.push({x: i + random(0, 20), y: j + random(0, 20), sz: random(3), bright: random(150, 255), atmo: random(50)});
+for(var i = 0; i < width; i += 25){
+    for(var j = 0; j < height; j += 25){
+        stars.push({x: i + random(0, 20), y: j + random(0, 20), sz: random(5), bright: random(50, 255), atmo: random(50)});
     }
 }
 var r = random(2);
@@ -12,33 +12,31 @@ var r = random(2);
 background(0, 0, 0);
 
 noStroke();
-for(var i = 0; i < 420; i += 10){
-    for(var j = 0; j < 420; j += 10){
+for(var i = 0; i < width; i += 10){
+    for(var j = 0; j < height; j += 10){
         var n = map(noise(i/85, j/255, round(r)), 0, 1, 0, 370);
-        fill(i, j/2, 219, n/4);
+        fill(i, j/2, j*2, n/4);
         rect(i, j, 10, 10);
     }
 }
-
+textSize(55);
+fill(255, 255, 255);
+text("Misty Galaxy", width/2 + 6, height/2 + 6);
+filter(BLUR, 4);
+fill(255, 255, 255);
+text("Misty Galaxy", width/2, height/2);
+fill(255, 255, 255);
+textSize(17);
+text("a game by aidabaida", width/1.7, height/1.8);
 for (var i = 0; i < stars.length; i++) {
     noFill();
-    strokeWeight(stars[i].sz);
     stroke(255, 255, 255, stars[i].bright/10);
     ellipse(stars[i].x, stars[i].y, stars[i].atmo, stars[i].atmo);
     stroke(255, 255, 255, stars[i].bright/20);
     ellipse(stars[i].x, stars[i].y, stars[i].atmo-4, stars[i].atmo-4);
+    stroke(255, 255, 255, stars[i].bright/40);
+    ellipse(stars[i].x, stars[i].y, stars[i].atmo-8, stars[i].atmo-8);
     noStroke();
     fill(255, 255, 255, stars[i].bright);
     ellipse(stars[i].x, stars[i].y, stars[i].sz, stars[i].sz);
 }
-popMatrix();
-
-textSize(55);
-fill(255, 255, 255);
-//text("Misty Galaxy", 204, 204);
-//filter(BLUR, 3);
-fill(255, 255, 255);
-text("Misty Galaxy", width/2, 200);
-fill(255, 255, 255);
-textSize(17);
-text("a game by aidabaida", width/1.6, 232);
