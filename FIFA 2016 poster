@@ -1,0 +1,57 @@
+textAlign(CENTER, CENTER);
+
+var ball = function(x, y){
+    noStroke();
+    pushMatrix();
+    translate(x, y);
+    scale(0.2);
+    fill(0, 0, 0);
+    ellipse(0,0,200,200);
+    fill(255, 255, 255);
+    for(var i=1;i<=5;i++){
+        rotate(72);
+        quad(-25,-35,-25,-95,25,-95,25,-35);
+        triangle(-24,-35,-24,-95,-46,-65);
+        triangle(24,-35,24,-95,46,-65);
+    }
+    popMatrix();
+};
+
+background(0);
+for(var i = 25; i < 400; i += 32){
+    for(var j = 25; j < 400; j += 34){
+        ball(i, j);
+    }
+}
+var bg = get(0, 0, 400, 400);
+
+background(0);
+textSize(200);
+fill(255, 255, 255);
+textLeading(20);
+textFont(createFont("Impact"));
+textLeading(160);
+text("FIFA\n2016", 200, 200);
+var txt = get(0, 0, 400, 400);
+
+bg.mask(txt);
+
+background(48, 194, 35);
+fill(52, 179, 38);
+for(var i =  0; i < 400; i += 100){
+    noStroke();
+    rect(i, 0, 50, 400);
+}
+textFont(createFont("Impact"));
+textSize(190);
+fill(0, 0, 0, 30);
+textLeading(160);
+text("FIFA\n2016", 205, 220);
+textSize(200);
+fill(0, 0, 0);
+textLeading(160);
+text("FIFA\n2016", 203, 203);
+text("FIFA\n2016", 197, 203);
+text("FIFA\n2016", 203, 197);
+text("FIFA\n2016", 197, 197);
+image(bg, 0, 0);
