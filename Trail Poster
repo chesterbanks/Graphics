@@ -1,0 +1,62 @@
+textFont(createFont('DIN Condensed'));
+textAlign(CENTER, CENTER);
+imageMode(CENTER);
+
+noStroke();
+fill(237, 221, 133);
+rect(125, 0, 151, 400);
+noFill();
+for(var i = 0; i < height; i += 6){
+    strokeWeight(random(3));
+    stroke(0, 0, 0, random(30));
+    arc(random(150, 250), i + random(-15, 15), random(200), random(20), -180, 0);
+}
+strokeWeight(2);
+for(var i = 125; i < 150; i += 2){
+    stroke(0, 0, 0, 150 - i);
+    line(i, 0, i, 400);
+}
+for(var i = 250; i < 276; i += 2){
+    stroke(0, 0, 0, i - 250);
+    line(i, 0, i, 400);
+}
+noStroke();
+fill(84, 212, 55);
+rect(0, 0, 125, 400);
+rect(275, 0, 125, 400);
+
+for(var i = 0; i < 125; i += 5){
+    for(var j = 0; j < 400; j += 5){
+        (fill)(0, 0, 0, noise(i+j+random(2), 3)*115);
+        rect(i, j, 5, 5);
+        rect(i + 275, j, 5, 5);
+    }
+}
+
+fill(191, 177, 105);
+for(var i = 0; i < 400; i += 10){
+    rect(noise(i, 0.02)*310 - 25, i, 10, 10);
+    rect(noise(i, 0.02)*310 + 125, i, 10, 10);
+}
+
+var snapshot = get(0, 0, 400, 400);
+
+background(255, 255, 255);
+
+image(snapshot, 250, 250);
+noFill();
+stroke(0, 0, 0, 50);
+strokeWeight(10);
+rect(50, 50, 400, 400);
+
+textSize(120);
+fill(15, 120, 34);
+for(var i = 0; i < 360; i += 30){
+    text('TRAIL', 250 + sin(i)*5, 531 + cos(i)*5);
+}
+fill(18, 138, 40);
+for(var i = 0; i < 360; i += 30){
+    text('TRAIL', 250 + sin(i)*5, 525 + cos(i)*5);
+}
+fill(23, 179, 54);
+text('TRAIL', 250, 525);
