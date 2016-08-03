@@ -1,0 +1,145 @@
+rectMode(CENTER);
+textAlign(CENTER, CENTER);
+textFont(createFont('Futura'), 30);
+
+var Animal = function(){
+    this.type = 0;
+    this.x = 200;
+    this.y = 200;
+    this.sz = 10;
+};
+Animal.prototype.draw = function() {
+    pushMatrix();
+    translate(this.x, this.y);
+    scale(this.sz / 10);
+    if(this.type === 0){
+        // Regular Bear
+        noStroke();
+        fill(55);
+        ellipse(0, 70, 160, 160);
+        strokeWeight(5);
+        stroke(55);
+        fill(209, 170, 128);
+        ellipse(-70, -70, 70, 70);
+        ellipse(70, -70, 70, 70);
+        rect(-35, 135, 65, 60, 50);
+        rect(35, 135, 65, 60, 50);
+        rect(-80, 75, 65, 60, 50);
+        rect(80, 75, 65, 60, 50);
+        noStroke();
+        ellipse(0, 70, 150, 150);
+        fill(255, 196, 214);
+        ellipse(-70, -70, 40, 40);
+        ellipse(70, -70, 40, 40);
+        fill(245);
+        ellipse(0, 80, 100,100);
+        stroke(55);
+        fill(209, 170, 128);
+        arc(0, 0, 200, 130, 0, 180);
+        arc(0, 0, 200, 200, -180, 0);
+        noStroke();
+        fill(55);
+        ellipse(-50, 0, 30, 30);
+        ellipse(50, 0, 30, 30);
+        fill(245);
+        ellipse(0, 10, 60, 50);
+        fill(55);
+        ellipse(0, 10, 20, 10);
+        noFill();
+        stroke(55);
+        strokeWeight(2);
+        arc(-10, 15, 20, 10, 0, 150);
+        arc(10, 15, 20, 10, 50, 180);
+        arc(0, 21, 15, 10, 0, 180);
+    }
+    if(this.type === 1){
+        // Panda Bear
+        noStroke();
+        fill(55);
+        ellipse(0, 70, 160, 160);
+        strokeWeight(5);
+        stroke(55);
+        fill(55);
+        ellipse(-70, -70, 70, 70);
+        ellipse(70, -70, 70, 70);
+        fill(255, 255, 255);
+        rect(-35, 135, 65, 60, 50);
+        rect(35, 135, 65, 60, 50);
+        rect(-80, 75, 65, 60, 50);
+        rect(80, 75, 65, 60, 50);
+        noStroke();
+        ellipse(0, 70, 150, 150);
+        fill(255, 196, 214);
+        ellipse(-70, -70, 40, 40);
+        ellipse(70, -70, 40, 40);
+        fill(55);
+        rect(0, 75, 225, 60, 50);
+        fill(255);
+        arc(0, 106, 130, 45, -180, 0);
+        stroke(55);
+        fill(255, 255, 255);
+        arc(0, 0, 200, 130, 0, 180);
+        arc(0, 0, 200, 200, -180, 0);
+        noStroke();
+        fill(55);
+        ellipse(-50, 0, 60, 60);
+        ellipse(50, 0, 60, 60);
+        fill(255, 255, 255);
+        ellipse(-45, 0, 30, 30);
+        ellipse(45, 0, 30, 30);
+        fill(55);
+        ellipse(-40, 0, 10, 10);
+        ellipse(40, 0, 10, 10);
+        ellipse(0, 10, 20, 10);
+        noFill();
+        stroke(55);
+        strokeWeight(2);
+        arc(-10, 15, 20, 10, 0, 150);
+        arc(10, 15, 20, 10, 50, 180);
+        arc(0, 21, 15, 10, 0, 180);
+    }
+    if(this.type === 2){
+        // Polar Bear
+        noStroke();
+        fill(55);
+        ellipse(0, 70, 160, 160);
+        strokeWeight(5);
+        stroke(55);
+        fill(255, 255, 255);
+        ellipse(-70, -70, 70, 70);
+        ellipse(70, -70, 70, 70);
+        rect(-35, 135, 65, 60, 50);
+        rect(35, 135, 65, 60, 50);
+        rect(-80, 75, 65, 60, 50);
+        rect(80, 75, 65, 60, 50);
+        noStroke();
+        ellipse(0, 70, 150, 150);
+        fill(189, 189, 189);
+        ellipse(-70, -70, 40, 40);
+        ellipse(70, -70, 40, 40);
+        fill(240, 240, 240);
+        ellipse(0, 80, 100,100);
+        stroke(55);
+        fill(255, 255, 255);
+        arc(0, 0, 200, 130, 0, 180);
+        arc(0, 0, 200, 200, -180, 0);
+        noStroke();
+        fill(55);
+        ellipse(-50, 0, 30, 30);
+        ellipse(50, 0, 30, 30);
+        fill(171, 171, 171);
+        ellipse(0, 15, 50, 50);
+        fill(55);
+        ellipse(0, 7, 20, 20);
+        noFill();
+        stroke(55);
+        strokeWeight(2);
+        arc(-10, 15, 20, 10, 0, 150);
+        arc(10, 15, 20, 10, 50, 180);
+        arc(0, 21, 15, 10, 0, 180);
+    }
+    popMatrix();
+};
+var ani = new Animal();
+
+ani.draw();
