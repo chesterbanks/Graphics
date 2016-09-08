@@ -1,0 +1,119 @@
+var images = {
+    menu: function(){
+        noStroke();
+        for(var i = 0; i < height; i += 20){
+            fill(lerpColor(color(0), color(0, 54, 79), i / height));
+            rect(0, i, width, 21);
+        }
+        
+        for(var i = height; i > 150; i -= 15){
+            noStroke();
+            fill(41, 41, 41);
+            ellipse(455, i, 550-i, 50);
+            noFill();
+            strokeWeight(5);
+            stroke(0, 0, 0, 50);
+            arc(455, i, 550 - i, 50, 0, random(180));
+        }
+        
+        noStroke();
+        for(var i = -90; i < width + 15; i += 130){
+            for(var j = 0; j < height / 2; j += 32){
+                fill(j / 7, j / 7, j / 7, 400 - j);
+                ellipse(i + ((j%3)*85), j, 275, 40 + (j / 100));
+            }
+        }
+        
+        noStroke();
+        fill(99, 44, 10);
+        rect(-30, 500, 300, 100);
+        fill(125, 55, 12);
+        rect(-30, 520, 310, 90);
+        fill(150, 67, 12);
+        rect(-21, 560, 310, 80);
+        fill(166, 79, 25);
+        rect(-32, 580, 310, 80);
+        
+        
+        fill(99, 44, 10);
+        rect(349, 510, 100, 100);
+        fill(125, 55, 12);
+        rect(360, 540, 100, 90);
+        fill(150, 67, 12);
+        rect(372, 572, 100, 80);
+        fill(166, 79, 25);
+        rect(348, 590, 100, 80);
+        
+        fill(10, 148, 31);
+        beginShape();
+        vertex(0, 500);
+        vertex(280, 500);
+        for(var i = 500; i <= 600; i += 10){
+            vertex(130 + (noise(i, 0.65)*280), i);
+        }
+        vertex(0, 600);
+        endShape(CLOSE);
+        beginShape();
+        vertex(600, 500);
+        vertex(280, 500);
+        for(var i = 500; i <= 600; i += 10){
+            vertex(230 + (noise(i, 0.65)*280), i);
+        }
+        vertex(600, 600);
+        endShape(CLOSE);
+        
+        var back = get(0, 0, width, height);
+        
+        background(0);
+        fill(255);
+        ellipse(300, 300, 700, 700);
+        
+        var front = get(0, 0, width, height);
+        
+        background(0, 0, 0);
+        noStroke();
+        for(var i = 0; i < height; i += 10){
+            fill(50 + sin(i)*30);
+            rect(0, i, width, 11);
+        }
+        var back2 = get(0, 0, width, height);
+        
+        background(0, 0, 0);
+        fill(255);
+        textFont(createFont("HelveticaNeue-CondensedBold"), 200);
+        textAlign(CENTER, CENTER);
+        text("storm", 300, 300);
+        var front2 = get(0, 0, width, height);
+        
+        back2.mask(front2);
+        
+        back.mask(front);
+        
+        image(back, 0, 0);
+        noFill();
+        strokeWeight(10);
+        for(var i = 710; i > 500; i -= 20){
+            stroke(0, 0, 0, i - 500);
+            ellipse(300, 300, i, i);
+        }
+        fill(255, 255, 255, 100);
+        textSize(195);
+        text("storm", 300, 305);
+        image(back2, 0, 0);
+        
+        return get(0, 0, width, height);
+    },
+};
+
+draw = function() {
+    // Load all images in first frame
+    for(var i in images){
+        if (typeof images[i] !== "object") {
+            colorMode(RGB, 255);
+            background(0, 0, 0, 0);
+            images[i] = images[i]();
+        }
+    }
+    
+    image(images.menu, 0, 0);
+};
