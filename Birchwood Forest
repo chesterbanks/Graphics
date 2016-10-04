@@ -1,0 +1,76 @@
+var birchTrunk = function(x, y, thickness){
+    strokeCap(SQUARE);
+    strokeWeight(thickness/10);
+    stroke(191, 190, 184);
+    fill(247, 246, 234);
+    pushMatrix();
+    translate(x, y);
+    beginShape();
+    for(var i = -300; i < 302; i += 20){
+        vertex(-thickness + noise(i, 1.8)*70, i);
+        /*vertex(-thickness + (thickness/3.5) + noise(i, 1.8)*70, i);
+        vertex(-thickness + noise(i, 1.8)*70, i+6);*/
+    }
+    for(var i = 300; i > -302; i -= 20){
+        vertex(0 + noise(i, 1.8)*70, i);
+    }
+    endShape(CLOSE);
+    beginShape();
+    for(var i = -300; i < 302; i += 20){
+        vertex(-thickness + noise(i, 1.8)*70, i);
+        vertex(-thickness + (thickness/3.5) + noise(i, 1.8)*70, i);
+        vertex(-thickness + noise(i, 1.8)*70, i+6);
+    }
+    stroke(0, 0, 0, thickness);
+    for(var i = -300; i < 302; i += 20){
+        line(-thickness + noise(i, 1.8)*70, i, 
+        (thickness/(noise(i*2, 2.55)*5)) - 
+        thickness + noise(i, 1.8)*70, i);
+    }
+    noStroke();
+    fill(0, 0, 0, 20);
+    vertex(thickness/3, 3-300);
+    endShape(CLOSE);
+    popMatrix();
+};
+
+background(25);
+birchTrunk(300, 300);
+
+draw = function() {
+    background(255, 255, 255);
+    noStroke();
+    for(var i = -140; i < 800; i += 40){
+        birchTrunk(i - (frameCount/1.2)%40, 300, 20);
+    }
+    fill(0, 0, 0, 30);
+    rect(0, 0, width, height);
+    for(var i = 60; i < 800; i += 140){
+        birchTrunk(i - (frameCount/1.6)%140, 300, 28);
+    }
+    fill(0, 0, 0, 30);
+    rect(0, 0, width, height);
+    for(var i = 98; i < 800; i += 140){
+        birchTrunk(i - (frameCount/1.8)%140, 300, 42);
+    }
+    fill(0, 0, 0, 30);
+    rect(0, 0, width, height);
+    for(var i = 35; i < 800; i += 140){
+        birchTrunk(i - frameCount%140, 300, 65);
+    }
+    
+    textAlign(CENTER, CENTER);
+    textFont(createFont('Arial Black'), 80);
+    fill(0, 0, 0, 70);
+    text('BIRCHWOOD', 300, 300);
+    textSize(77);
+    fill(71, 55, 84);
+    text('BIRCHWOOD', 300, 295);
+    
+    textSize(70);
+    fill(0, 0, 0, 70);
+    text('F  O  R  E  S  T', 300, 365);
+    textSize(69);
+    fill(71, 55, 84);
+    text('F  O  R  E  S  T', 300, 360);
+};
