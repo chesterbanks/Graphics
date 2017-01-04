@@ -1,0 +1,61 @@
+textAlign(CENTER, CENTER);
+textFont(createFont('Avenir'));
+
+background(54, 98, 130);
+
+noStroke();
+
+fill(67, 98, 232, 130);
+for(var i = 0; i < 100; i ++){
+    ellipse(random(width), random(height), sin(i)*50, sin(i)*50);
+}
+
+fill(172, 115, 230, 100);
+for(var i = 0; i < 100; i ++){
+    ellipse(random(width), random(height), sin(i)*50, sin(i)*50);
+}
+
+fill(230, 115, 215, 100);
+for(var i = 0; i < 100; i ++){
+    ellipse(random(width), random(height), sin(i)*50, sin(i)*50);
+}
+
+fill(224, 230, 115, 100);
+for(var i = 0; i < 100; i ++){
+    //ellipse(random(width), random(height), sin(i)*50, sin(i)*50);
+}
+
+fill(115, 201, 230, 100);
+for(var i = 0; i < 100; i ++){
+    ellipse(random(width), random(height), sin(i)*50, sin(i)*50);
+}
+
+fill(137, 232, 116, 100);
+for(var i = 0; i < 100; i ++){
+    //ellipse(random(width), random(height), sin(i)*50, sin(i)*50);
+}
+
+fill(255, 255, 255, 20);
+for(var i = 0; i < 100; i ++){
+    ellipse(random(width), random(height), sin(i)*70, sin(i)*70);
+}
+
+textSize(50);
+fill(0, 0, 0, 30);
+text('C I R C L E S', 200, 206);
+fill(255, 255, 255);
+text('C I R C L E S', 200, 200);
+
+noStroke();
+fill(255, 255, 255);
+ellipse(200, 400, 600, 200);
+ellipse(200, 0, 600, 200);
+
+noFill();
+strokeWeight(5);
+for(var i = 2; i < 100; i += 5){
+    stroke(0, 0, 0, 30 - i);
+    arc(200, 400 + i, 600, 200, -180, 0);
+    stroke(0, 0, 0, i - 60);
+    arc(200, i - 99, 600, 200, 0, 180);
+}
