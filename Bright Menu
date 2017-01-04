@@ -1,0 +1,55 @@
+var colors = [
+    color(255, 102, 235),
+    color(71, 217, 96),
+    color(71, 210, 217)
+];
+var word = 'BRIGHT'.split('');
+
+rectMode(CENTER);
+textAlign(CENTER, CENTER);
+textFont(createFont('Monaco'));
+
+var vars = {brightX: 400, bottomWs: 400, x: 400};
+
+draw = function() {
+    rectMode(CENTER);
+    background(252, 252, 252);
+    
+    rectMode(CORNER);
+    noStroke();
+    fill(colors[0]);
+    rect(vars.x, 107, width, 50);
+    rect(0, 241, width - vars.bottomWs, 50);
+    fill(colors[1]);
+    rect(vars.x, 50, width, 50);
+    rect(0, 300, width - vars.bottomWs, 50);
+    fill(colors[2]);
+    rect(vars.x, -7, width, 50);
+    rect(0, 357, width - vars.bottomWs, 50);
+    
+    fill(255, 255, 255, 30);
+    rect(0, 107, width, 30);
+    rect(0, 241, width, 30);
+    rect(0, 50, width, 30);
+    rect(0, 300, width, 30);
+    rect(0, -7, width, 30);
+    rect(0, 357, width, 27);
+    
+    textSize(45);
+    fill(0, 0, 0, 5);
+    for(var i in word){
+        for(var j = 0; j < 360; j += 30){
+            text(word[i], sin(j)*5 + 80 + (i * 48) - vars.brightX, cos(j)*5 + 204);
+        }
+    }
+    for(var i in word){
+        fill(colors[i%3]);
+        text(word[i], 80 + (i * 48) - vars.brightX, 200);
+    }
+    
+    if(vars.bottomWs < 10){
+        vars.brightX /= 1.1;
+    }
+    vars.bottomWs /= 1.1;
+    vars.x /= 1.1;
+};
