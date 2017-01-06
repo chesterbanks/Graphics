@@ -1,0 +1,50 @@
+draw = function() {
+    background(0);
+    
+    strokeWeight(3);
+    stroke(255, 217, 0);
+    fill(242, 158, 22);
+    pushMatrix();
+    translate(width / 2, height / 2);
+    
+    switch(round(frameCount/6) % 5){
+        case 0:
+            beginShape();
+            curveVertex(-56,20); curveVertex(-55,-29); curveVertex(-61,-65); curveVertex(-44,-59); curveVertex(-23,-32); curveVertex(-42,-102); curveVertex(-17,-143); curveVertex(-11,-107); curveVertex(-2,-86); curveVertex(8,-95); curveVertex(9,-116); curveVertex(39,-98); curveVertex(28,-60); curveVertex(31,-39); curveVertex(47,-53); curveVertex(52,-40); curveVertex(49,-21); curveVertex(63,13); curveVertex(54,57); curveVertex(7,103); curveVertex(-46,66); curveVertex(-56,20); curveVertex(-55,-29); curveVertex(-61,-65); 
+            endShape();
+            break;
+    
+        case 1:
+            beginShape();
+            curveVertex(-56,20); curveVertex(-55,-29); curveVertex(-66,-59); curveVertex(-52,-67); curveVertex(-37,-24); curveVertex(-29,-31); curveVertex(-53,-102); curveVertex(-32,-144); curveVertex(-24,-95); curveVertex(-7,-67); curveVertex(9,-81); curveVertex(15,-116); curveVertex(39,-83); curveVertex(14,-50); curveVertex(21,-23); curveVertex(54,13); curveVertex(54,57); curveVertex(7,103); curveVertex(-46,66); curveVertex(-56,20); curveVertex(-55,-29); curveVertex(-66,-59);
+            endShape();
+            break;
+        
+        case 2:
+            beginShape();
+            curveVertex(-56,20); curveVertex(-60,-11); curveVertex(-63,-40); curveVertex(-47,-44); curveVertex(-32,-18); curveVertex(-37,-62); curveVertex(-31,-82); curveVertex(-16,-50); curveVertex(-12,-70); curveVertex(4,-72); curveVertex(30,-51); curveVertex(50,-28); curveVertex(74,21); curveVertex(54,75); curveVertex(7,103); curveVertex(-46,66); curveVertex(-56,20); curveVertex(-60,-11); curveVertex(-63,-40);
+            endShape();
+            
+            pushMatrix();
+            translate(-20, -70);
+            scale(0.7);
+            beginShape();
+curveVertex(44,-36); curveVertex(11,-30); curveVertex(-10,-71); curveVertex(-12,-109); curveVertex(8,-92); curveVertex(14,-73); curveVertex(26,-55); curveVertex(40,-62); curveVertex(51,-66); curveVertex(62,-52); curveVertex(44,-36); curveVertex(11,-30); curveVertex(-10,-71);
+            endShape();
+            popMatrix();
+            break;
+            
+        case 3:
+            beginShape();
+            curveVertex(-60,18); curveVertex(-54,-8); curveVertex(-63,-40); curveVertex(-47,-44); curveVertex(-32,-18); curveVertex(-30,-61); curveVertex(-41,-63); curveVertex(-27,-88); curveVertex(-16,-50); curveVertex(4,-91); curveVertex(30,-94); curveVertex(30,-62); curveVertex(35,-35); curveVertex(69,-16); curveVertex(79,4); curveVertex(86,11); curveVertex(54,75); curveVertex(7,103); curveVertex(-46,66); curveVertex(-60,18); curveVertex(-54,-8); curveVertex(-63,-40);
+            endShape();
+            break;
+            
+        case 4:
+            beginShape();
+            curveVertex(-52,74); curveVertex(-60,18); curveVertex(-54,-8); curveVertex(-35,-41); curveVertex(-47,-67); curveVertex(-29,-81); curveVertex(0,-58); curveVertex(-5,-104); curveVertex(23,-130); curveVertex(45,-105); curveVertex(28,-83); curveVertex(30,-34); curveVertex(47,-52); curveVertex(70,-48); curveVertex(79,-26); curveVertex(100,14); curveVertex(71,87); curveVertex(-1,105); curveVertex(-52,74); curveVertex(-60,18); curveVertex(-54,-8); 
+            endShape();
+            break;
+        }
+    popMatrix();
+};
