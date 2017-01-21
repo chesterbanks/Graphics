@@ -1,0 +1,87 @@
+background(255);
+noFill();
+stroke(0);
+strokeWeight(1);
+bezier(5, 435, 138, 399, 202, 525, 327, 527);
+bezier(591, 492, 506, 453, 402, 525, 350, 527);
+noStroke();
+fill(255);
+ellipse(200, 500, 70, 86);
+fill(217, 237, 86);
+ellipse(456, 80, 90, 91);
+fill(38, 227, 79);
+ellipse(480, 462, 31, 47);
+ellipse(191, 500, 59, 82);
+fill(217, 167, 126);
+bezier(284, 600, 310, 552, 294, 567, 350, 530);
+bezier(282, 600, 333, 581, 297, 551, 350, 530);
+noFill();
+stroke(217, 167, 126);
+strokeWeight(5);
+arc(353, 434, 395, 284, -322, -310);
+strokeWeight(8);
+arc(361, 434, 395, 284, -337, -308);
+stroke(0);
+strokeWeight(1);
+
+// Sun beams
+for(var i = 0; i < 360; i += 30){
+    pushMatrix();
+    translate(470, 85);
+    rotate(i);
+    stroke(0);
+    line(0, 60, 0, 75 + random(-10, 10));
+    popMatrix();
+}
+
+// Hill
+bezier(5, 591, 213, 582, 285, 450, 587, 594);
+
+// Paths
+arc(298, 427, 519, 276, -335, -306);
+arc(376, 427, 382, 312, -337, -308);
+arc(566, 600, 650, 222, -179, -142);
+arc(500, 600, 369, 222, -180, -142);
+
+// Trees
+ellipse(200, 500, 70, 85);
+ellipse(475, 457, 40, 55);
+
+// Sun
+ellipse(470, 85, 100, 100);
+
+// Clouds
+pushMatrix();
+translate(-145, 53);
+arc(300, 100, 200, 30, 10, 170);
+arc(223, 90, 50, 50, 150, 340);
+arc(294, 64, 100, 100, 161, 361);
+arc(371, 65, 55, 55, 184, 401);
+arc(407, 88, 30, 30, 202, 476);
+popMatrix();
+pushMatrix();
+translate(332, 185);
+scale(0.5);
+strokeWeight(2);
+arc(300, 100, 200, 30, 10, 170);
+arc(223, 90, 50, 50, 150, 340);
+arc(294, 64, 100, 100, 161, 361);
+arc(371, 65, 55, 55, 184, 401);
+arc(407, 88, 30, 30, 202, 476);
+popMatrix();
+
+// Tree trunks
+fill(255);
+triangle(200, 530, 195, 573, 205, 570);
+triangle(476, 479, 482, 506, 474, 502);
+line(195, 568, 200, 566);
+line(199, 558, 203, 556);
+line(479, 500, 474, 497);
+
+textAlign(CENTER, CENTER);
+textFont(createFont('HelveticaNeue-UltraLight'));
+fill(0);
+textSize(40);
+text('SKETCHY', 300, 300);
+textSize(20);
+text('CHESTER BANKS', 300, 340);
