@@ -1,0 +1,56 @@
+var Tree = function(){
+    this.s = 0.1;
+    this.fade = 100;
+};
+Tree.prototype.draw = function() {
+    pushMatrix();
+    translate(200, 200);
+    scale(this.s);
+    noStroke();
+    rectMode(CENTER);
+    fill(128, 80, 18);
+    rect(-18, 7, 3, 20);
+    rect(18, 7, 3, 20);
+    fill(53, 212, 93);
+    ellipse(-50, 0, 50, 50);
+    ellipse(50, 0, 50, 50);
+    fill(255, 255, 255, 60);
+    ellipse(-55, -5, 40, 40);
+    ellipse(45, -5, 40, 40);
+    fill(0, 0, 0, this.fade);
+    ellipse(-50, 0, 50, 50);
+    ellipse(50, 0, 50, 50);
+    popMatrix();
+    
+    this.s *= 1.05;
+    this.fade /= 1.05;
+};
+var Trees = [new Tree(), new Tree(), new Tree()];
+
+textAlign(CENTER, CENTER);
+textFont(createFont('Impact'));
+
+draw = function() {
+    background(64, 126, 173);
+    
+    fill(0, 0, 0, 10);
+    for(var i = 200; i > 0; i -= 20){
+        rect(200, 0, 400, i);
+    }
+    
+    fill(66, 135, 73);
+    rect(200, 300, width, 200);
+    fill(145, 104, 58);
+    triangle(-30, 400, 430, 400, 200, 200);
+    
+    if(frameCount % 20 === 0){
+        Trees.push(new Tree());
+    }
+    for(var i in Trees){
+        Trees[i].draw();
+        if(Trees[i].s > 20){
+            Trees.splice(i, 1);
+            i--;
+        }
+    }
+};
