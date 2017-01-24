@@ -27,40 +27,53 @@ var images = {
         noStroke();
         fill(99, 44, 10);
         rect(-30, 500, 300, 100);
+        rect(361, 510, 100, 100);
         fill(125, 55, 12);
         rect(-30, 520, 310, 90);
+        rect(361, 540, 100, 90);
         fill(150, 67, 12);
         rect(-21, 560, 310, 80);
+        rect(352, 570, 100, 80);
         fill(166, 79, 25);
         rect(-32, 580, 310, 80);
+        rect(364, 590, 100, 80);
         
-        
-        fill(99, 44, 10);
-        rect(349, 510, 100, 100);
-        fill(125, 55, 12);
-        rect(360, 540, 100, 90);
-        fill(150, 67, 12);
-        rect(372, 572, 100, 80);
-        fill(166, 79, 25);
-        rect(348, 590, 100, 80);
-        
-        fill(10, 148, 31);
+        fill(32, 87, 34);
         beginShape();
         vertex(0, 500);
-        vertex(280, 500);
-        for(var i = 500; i <= 600; i += 10){
-            vertex(130 + (noise(i, 0.65)*280), i);
-        }
+        vertex(270, 500);
+        vertex(260, 510);
+        vertex(280, 520);
+        vertex(270, 530);
+        vertex(260, 540);
+        vertex(280, 550);
+        vertex(290, 560);
+        vertex(250, 570);
+        vertex(280, 580);
+        vertex(260, 590);
+        vertex(290, 600);
         vertex(0, 600);
         endShape(CLOSE);
+        
+        pushMatrix();
+        translate(100, 0);
         beginShape();
         vertex(600, 500);
         vertex(280, 500);
-        for(var i = 500; i <= 600; i += 10){
-            vertex(230 + (noise(i, 0.65)*280), i);
-        }
+        vertex(260, 510);
+        vertex(280, 520);
+        vertex(270, 530);
+        vertex(260, 540);
+        vertex(280, 550);
+        vertex(290, 560);
+        vertex(250, 570);
+        vertex(280, 580);
+        vertex(260, 590);
+        vertex(290, 600);
+        vertex(0, 600);
         vertex(600, 600);
         endShape(CLOSE);
+        popMatrix();
         
         var back = get(0, 0, width, height);
         
@@ -76,13 +89,16 @@ var images = {
             fill(50 + sin(i)*30);
             rect(0, i, width, 11);
         }
+        
         var back2 = get(0, 0, width, height);
         
         background(0, 0, 0);
         fill(255);
-        textFont(createFont("HelveticaNeue-CondensedBold"), 200);
+        textFont(createFont("HelveticaNeue-CondensedBold"), 220);
         textAlign(CENTER, CENTER);
         text("storm", 300, 300);
+        textSize(20);
+        text('||  C H E S T E R   B A N K S  ||  F E B R U A R Y   2 0 1 7  ||', 300, 410);
         var front2 = get(0, 0, width, height);
         
         back2.mask(front2);
@@ -90,6 +106,7 @@ var images = {
         back.mask(front);
         
         image(back, 0, 0);
+        filter(BLUR, 2);
         noFill();
         strokeWeight(10);
         for(var i = 710; i > 500; i -= 20){
@@ -97,7 +114,7 @@ var images = {
             ellipse(300, 300, i, i);
         }
         fill(255, 255, 255, 100);
-        textSize(195);
+        textSize(215);
         text("storm", 300, 305);
         image(back2, 0, 0);
         
