@@ -1,0 +1,76 @@
+var loadGoogleFont = (function () {
+    return this.Function ( "gfName", "gfName = gfName.replace ( /\\s+/g, '+' );var subsets = Array.prototype.slice.call ( arguments, 1, arguments.length - 1 ), url = 'https://fonts.googleapis.com/css?family=' + gfName + ( subsets.length > 0 ? '&amp;subset=' + subsets : '' ), callback = arguments [ arguments.length - 1 ], gfs = document.querySelectorAll('link[href=\"'+url+'\"]');if(!gfs.length){var f=document.createElement('link');f.setAttribute('rel','stylesheet');f.setAttribute('type','text/css');f.onload=callback;f.setAttribute('href',url);document.head.appendChild(f);}else if ( typeof callback === 'function' ) { callback.call ( gfs [ 0 ] ); }");
+})();
+var fontloaded = false;
+textAlign(CENTER, CENTER);
+if ( !fontloaded ) {
+    loadGoogleFont('Anonymous Pro|Mountains of Christmas|Poiret One|Josefin Sans|Montserrat|Barrio|Josefin Slab', 'latin-ext', 'vietnamese');
+}
+textFont(createFont("Josefin Slab"));
+random();
+
+background(16, 46, 59);
+noStroke();
+pushMatrix();
+translate(325, 200);
+fill(255, 255, 255, 20);
+for(var i = 315; i < 420; i += 25){
+    ellipse(0, 0, i, i);
+}
+fill(66, 84, 89);
+ellipse(0, 0, 300, 300);
+fill(149, 169, 172);
+ellipse(-5, -5, 280, 280);
+fill(165, 185, 188);
+ellipse(-5, -9, 260, 260);
+fill(212, 222, 220);
+ellipse(-5, -13, 230, 230);
+ellipse(35, -111,50, 40);
+ellipse(100, 1,40, 50);
+ellipse(-23, 80, 90, 73);
+ellipse(54, 80, 35, 45);
+ellipse(-99, -17, 80, 102);
+fill(165, 185, 188);
+ellipse(10, -35, 100, 90);
+ellipse(66, -52, 18, 20);
+ellipse(28, 29, 30, 28);
+ellipse(-27, 80, 80, 65);
+ellipse(54, 80, 30, 35);
+ellipse(-99, -17, 70, 80);
+popMatrix();
+
+fill(224, 224, 224);
+rect(143, 352, 12, 10, 10);
+rect(160, 352, 12, 10, 10);
+fill(42, 115, 67);
+rect(145, 310, 10, 50, 10);
+rect(163, 310, 10, 50, 10);
+
+fill(207, 198, 180);
+rect(0, 320, width, 10);
+rect(0, 335, width, 4);
+for(var i = 0; i < width; i += 100){
+    rect(i, 310, 15, 100, 5);
+}
+
+noFill();
+stroke(55, 150, 87);
+strokeWeight(7);
+arc(160, 309, 50, 100, -180, 0);
+stroke(230, 219, 166);
+arc(160, 309, 50, 100, -5, 0);
+arc(160, 309, 50, 100, -180, -175);
+noStroke();
+fill(55, 150, 87);
+rect(142, 260, 35, 60, 10);
+fill(230, 219, 166);
+ellipse(160, 249, 35, 35);
+fill(186, 177, 134);
+arc(160, 249, 35, 35, -170, -10);
+
+fill(255, 255, 255, 50);
+textSize(103);
+text('MOONFENCES', 1000, 210);
+fill(212, 222, 220);
+textSize(100);
+text('MOONFENCES', 1000, 200);
