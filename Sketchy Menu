@@ -16,17 +16,25 @@ button.prototype.draw = function() {
     text(this.txt, this.x, this.y);
     
     stroke(0);
-    line(this.x - (this.w / 2) + this.lineX, this.y + (this.h / 2), this.x + (this.w / 2) - this.lineX, this.y + (this.h / 2));
+    if(this.lineX < this.w / 2){
+        line(this.x - (this.w / 2) + this.lineX, this.y + (this.h / 2), this.x + (this.w / 2) - this.lineX, this.y + (this.h / 2));
+    }
     
     if(mouseX > this.x - (this.w / 2) && mouseX < this.x + (this.w / 2) && mouseY > this.y - (this.h / 2) && mouseY < this.y + (this.h / 2)){
         this.move = true;
     }
     
-    if(this.move){
-        this.lineX /= 1.2;
-    } else {
-        this.lineX *= 1.2;
+    if(this.lineX < 1){
+        this.move = false;
     }
+    
+    if(this.move){
+        this.lineX /= 1.1;
+    } else {
+        this.lineX *= 1.1;
+    }
+    
+    this.lineX = constrain(this.lineX, 0.1, this.w / 2);
 };
 var buttons = {
     play: new button(300, 400, 120, 50, 'P L A Y', 'Game'),
@@ -86,6 +94,7 @@ draw = function() {
     ellipse(470, 85, 100, 100);
     
     // Clouds
+    strokeWeight(1);
     pushMatrix();
     translate(-145, 53);
     arc(300, 100, 200, 30, 10, 170);
@@ -97,7 +106,7 @@ draw = function() {
     pushMatrix();
     translate(332, 185);
     scale(0.5);
-    strokeWeight(2);
+    strokeWeight(1);
     arc(300, 100, 200, 30, 10, 170);
     arc(223, 90, 50, 50, 150, 340);
     arc(294, 64, 100, 100, 161, 361);
