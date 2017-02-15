@@ -1,0 +1,30 @@
+// width: 600, height: 800
+
+background(255, 255, 255);
+
+textFont(createFont('Courier'), 100);
+
+noStroke();
+fill(0, 0, 0, 15);
+ellipse(250, 320, 500, 500);
+ellipse(485, 550, 200, 200);
+ellipse(250, 320, 530, 530);
+ellipse(485, 550, 230, 230);
+
+fill(0, 0, 0, 30);
+for(var i = 0; i < 10; i ++){
+    text('breaking', 50 + random(-5, 5), 300 + random(-5, 5));
+}
+fill(255, 255, 255, 100);
+text('breaking', 50, 300);
+textFont(createFont('Courier Bold'), 100);
+fill(176, 176, 176, 40);
+for(var i = 0; i < 10; i ++){
+    text('script', 50 + random(-5, 5), 380 + random(-5, 5));
+}
+fill(255, 255, 255, 200);
+text('script', 50, 380);
+
+fill(0, 0, 0, 100);
+textSize(15);
+text('a novel by aiden\nlastname\n--\nfebruary 2017', 415, 530);
