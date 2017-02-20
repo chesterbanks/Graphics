@@ -1,0 +1,104 @@
+/* Credit to Eric Balingit for Google Font code! */
+var loadGoogleFont = (function () {
+    return this.Function ( "gfName", "gfName = gfName.replace ( /\\s+/g, '+' );var subsets = Array.prototype.slice.call ( arguments, 1, arguments.length - 1 ), url = 'https://fonts.googleapis.com/css?family=' + gfName + ( subsets.length > 0 ? '&amp;subset=' + subsets : '' ), callback = arguments [ arguments.length - 1 ], gfs = document.querySelectorAll('link[href=\"'+url+'\"]');if(!gfs.length){var f=document.createElement('link');f.setAttribute('rel','stylesheet');f.setAttribute('type','text/css');f.onload=callback;f.setAttribute('href',url);document.head.appendChild(f);}else if ( typeof callback === 'function' ) { callback.call ( gfs [ 0 ] ); }");
+})();
+var fontloaded = false;
+
+var text2 = function(txt, x, y){
+    pushStyle();
+    fill(0, 0, 0, 10);
+    text(txt, x + 5, y + 5);
+    popStyle();
+    text(txt, x, y);
+};
+var text3 = function(txt, x, y){
+    pushStyle();
+    colorMode(RGB);
+    fill(255, 255, 255, 20);
+    for(var round = 0; round < 360; round += 30){
+        text(txt, x + sin(round)*8, y + cos(round)*8);
+    }
+    fill(0, 0, 0, 30);
+    text(txt, x + 5, y + 5);
+    popStyle();
+    text(txt, x, y);
+};
+
+var rainbow = 'RAINBOW'.split("");
+
+// Rain
+var Rain = function(){
+    this.x = random(-70, width);
+    this.y = random(-20, -100);
+    this.w = random(3, 6);
+    this.h = random(5, 25);
+    this.trans = random(100);
+};
+var Rains = []; // sometimes you need to use bad grammar
+Rain.prototype.draw = function() {
+    noStroke();
+    fill(108, 205, 240, this.trans);
+    rect(this.x, this.y, this.w, this.h);
+    
+    this.x += this.h / 5;
+    this.y += this.h;
+};
+
+var trans = 255;
+var r, rbright = 0;
+
+draw = function() {
+    textAlign(CENTER, CENTER);
+    if ( !fontloaded ) {
+        loadGoogleFont('Anonymous Pro|Barrio|Lobster|Amatic SC|Shadows Into Light Two', 'latin-ext', 'vietnamese');
+    }
+    textFont(createFont("Shadows Into Light Two"));
+    
+    background(0);
+    Rains.push(new Rain(), new Rain(), new Rain(), new Rain(), new Rain(), new Rain(), new Rain(), new Rain(), new Rain(), new Rain(), new Rain(), new Rain());
+    for(var i in Rains){
+        Rains[i].draw();
+        if(Rains[i].y > 420){
+            Rains.splice(i, 1);
+            i--;
+        }
+    }
+    
+    fill(237, 237, 237);
+    textSize(30);
+    text2('YOU HAVE TO WALK\nTHROUGH THE', 200, 100);
+    text2('TO SEE THE', 200, 245);
+    textSize(80);
+    text3('RAIN', 200, 180);
+    textSize(80);
+    colorMode(HSB);
+    for(var i in rainbow){
+        fill((i * 35)%255, 235, 255);
+        text3(rainbow[i], 67 + (i * (rainbow[i] === 'I' ? 38 : 46)) - (i > 5 ? -10 : 0) - (i > 2 ? 35 : 0), 305);
+    }
+    
+    noStroke();
+    for(var i = 0; i < height; i += 10){
+        for(var j = 0; j < width; j += 10){
+        fill((i+j)%255, 255, 255, rbright);
+        rect(j, i, 10, 10);
+        }
+    }
+    
+    colorMode(RGB);
+    
+    stroke(255, 255, 255, 200);
+    strokeWeight(15);
+    fill(205, 205, 0, trans);
+    rect(0, 0, width, height);
+    
+    r = floor(random(20));
+    if(r === 5){
+        trans = 255;
+    }
+    
+    trans /= 1.5;
+    if(rbright < 100){
+        rbright += 0.1;
+    }
+};
