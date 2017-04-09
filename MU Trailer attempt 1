@@ -1,0 +1,126 @@
+var scene = 'Dream';
+
+var Dream = function(){
+    this.s = 1;
+    this.timer = 0;
+    
+    this.Tree = function(){
+        this.s = 0.1;
+        this.fade = 100;
+    };
+    this.Tree.prototype.draw = function() {
+        noStroke();
+        pushMatrix();
+        translate(width / 2, height / 2);
+        scale(this.s);
+        noStroke();
+        rectMode(CENTER);
+        fill(0, 0, 0, 20);
+        rect(0, 42, 86, 5);
+        fill(128, 80, 18);
+        rect(-52, 33, 15, 20);
+        rect(52, 33, 15, 20);
+        fill(0, 184, 95);
+        ellipse(-50, 0, 50, 50);
+        ellipse(50, 0, 50, 50);
+        fill(255, 255, 255, 60);
+        ellipse(-55, -5, 40, 40);
+        ellipse(45, -5, 40, 40);
+        fill(0, 0, 0, this.fade);
+        ellipse(-50, 0, 50, 50);
+        ellipse(50, 0, 50, 50);
+        popMatrix();
+        
+        this.s *= 1.05;
+        this.fade /= 1.05;
+    };
+    this.Trees = [new this.Tree(), new this.Tree(), new this.Tree()];
+    
+    this.text = function(txt, x, y){
+        this.txt = txt;
+        this.x = x;
+        this.y = y;
+        this.s = 1;
+        this.c = false;
+    };
+    this.text.prototype.draw = function() {
+        pushMatrix();
+        translate(this.x, this.y);
+        if(this.c){
+            scale(this.s);
+        } else {
+            scale(1 - this.s);
+        }
+        fill(0, 0, 0, 10);
+        for(var i = 0; i < 360; i += 30){
+            text(this.txt, sin(i)*5, 10 + cos(i)*5);
+        }
+        fill(255, 255, 255, 30);
+        for(var i = 0; i < 360; i += 30){
+            text(this.txt, sin(i)*5, 0 + cos(i)*5);
+        }
+        fill(255);
+        text(this.txt, 0, 0);
+        popMatrix();
+        
+        this.s /= 1.1;
+        if(this.s < 0.01 && !this.c){
+            this.c = true;
+            this.s = 1;
+        }
+    };
+    this.texts = [
+        new this.text('EVERY DREAM...', 300, 300),
+        new this.text('STARTS SOMEWHERE', 300, 300),
+    ];
+};
+Dream.prototype.draw = function() {
+    rectMode(CENTER);
+    
+    textAlign(CENTER, CENTER);
+    textFont(createFont('Avenir'));
+    noStroke();
+    background(57, 143, 204);
+    
+    fill(0, 0, 0, 10);
+    for(var i = 200; i > 0; i -= 20){
+        rect(300, 0, 600, i);
+    }
+    
+    fill(66, 135, 73);
+    rect(300, 450,600, 300);
+    fill(161, 161, 161);
+    triangle(0, 600, 600, 600, 300, 300);
+    
+    if(frameCount % 20 === 0 && this.timer < 200){
+        this.Trees.push(new this.Tree());
+    }
+    for(var i in this.Trees){
+        this.Trees[i].draw();
+        if(this.Trees[i].s > 35){
+            this.Trees.splice(i, 1);
+            i--;
+        }
+    }
+    
+    this.timer ++;
+    
+    if(this.timer > 100 && this.timer < 200){
+        textSize(60);
+        this.texts[0].draw();
+    }
+    if(this.timer > 300 && this.timer < 400){
+        textSize(60);
+        this.texts[1].draw();
+    }
+};
+var dream = new Dream();
+
+draw = function() {
+    if(scene === 'Dream'){
+        dream.draw();
+    }
+    if(scene === 'Game'){
+        background(255);
+    }
+};
