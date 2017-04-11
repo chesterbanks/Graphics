@@ -1,0 +1,55 @@
+var DARK = true;
+
+var Leak = function(){
+    this.angle = random(360);
+    this.out = 0;
+    this.a = random(200);
+    this.hue = random(255);
+    this.sz = random(20);
+};
+Leak.prototype.draw = function() {
+    pushStyle();
+    pushMatrix();
+    translate(200 + sin(frameCount) * 100, 200 + cos(frameCount) * 100);
+    colorMode(HSB);
+    noStroke();
+    if(DARK){
+        fill(255, 0, 255, 10);
+    } else {
+        fill(0, 0, 0, 10);
+    }
+    ellipse(sin(this.a+frameCount*this.sz)*5 + sin(this.angle) * this.out, sin(this.a+frameCount*this.sz)*5 + cos(this.angle) * this.out, this.sz * 2, this.sz * 2);
+    fill(this.hue, 255, 150);
+    ellipse(sin(this.a+frameCount*this.sz)*5 + sin(this.angle) * this.out, sin(this.a+frameCount*this.sz)*5 + cos(this.angle) * this.out, this.sz, this.sz);
+    popMatrix();
+    popStyle();
+    
+    this.out += this.sz / 5;
+};
+var Leaks = [];
+
+background(0, 0, 0);
+textAlign(CENTER, CENTER);
+textFont(createFont('Molle'));
+
+draw = function() {
+    colorMode(RGB);
+    
+    noStroke();
+    if(DARK){
+        fill(0, 0, 0, frameCount < 10 ? 255 : 10);
+    } else {
+        fill(255, 255, 255, frameCount < 10 ? 255 : 10);
+    }
+    rect(0, 0, width, height);
+    
+    Leaks.push(new Leak());
+    
+    for(var i in Leaks){
+        Leaks[i].draw();
+        if(Leaks[i].out > 350){
+            Leaks.splice(i, 1);
+            i --;
+        }
+    }
+};
