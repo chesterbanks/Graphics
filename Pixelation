@@ -1,0 +1,51 @@
+var quality = 20;
+
+textAlign(CENTER, CENTER);
+textFont(createFont('Avenir Bold'));
+
+var Dot = function(x, y, c){
+    this.x = x;
+    this.y = y;
+    this.c = c;
+    this.newX = random(-400, 400);
+    this.newY = random(-400, 400);
+    
+    this.s = 1.1;
+};
+Dot.prototype.draw = function() {
+    noStroke();
+    fill(this.c);
+    rect(this.x + this.newX, this.y + this.newY, quality, quality);
+    fill(0, 0, 0, 20);
+    triangle(this.x + this.newX, this.y + this.newY, this.x + this.newX + (quality / 3), this.y + this.newY, this.x + this.newX, this.y + this.newY + quality);
+    triangle(this.x + this.newX, this.y + this.newY, this.x + this.newX + (quality), this.y + this.newY, this.x + this.newX, this.y + this.newY + (quality / 3));
+    fill(255, 255, 255, 20);
+    triangle(this.x + this.newX + quality, this.y + this.newY + quality, this.x + this.newX + quality, this.y + this.newY + (quality / 1.3), this.x + this.newX, this.y + this.newY + quality);
+    triangle(this.x + this.newX + quality, this.y + this.newY + quality, this.x + this.newX + quality, this.y + this.newY, this.x + this.newX + (quality / 1.3), this.y + this.newY + quality);
+    //triangle(this.x + this.newX, this.y + this.newY, this.x + this.newX + (quality), this.y + this.newY, this.x + this.newX, this.y + this.newY + (quality / 3));
+    
+    this.newX /= this.s; this.newY /= this.s;
+};
+var Dots = [];
+
+background(245, 205, 157);
+fill(0);
+textSize(200);
+imageMode(CENTER);
+image(getImage("creatures/Hopper-Cool"), 200, 200, 300, 300);
+
+for(var i = 0; i < 400; i += quality){
+    for(var j = 0; j < 400; j += quality){
+        //if(get(i, j) !== color(255)){
+            Dots.push(new Dot(i, j, get(i, j)));
+        //}
+    }
+}
+
+draw = function() {
+    background(255);
+    
+    for(var i in Dots){
+        Dots[i].draw();
+    }
+};
