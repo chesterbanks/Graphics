@@ -1,0 +1,294 @@
+var summer = {
+    skin: color(185, 235, 3),
+    x: 247,
+    y: 300
+};
+var winter = {
+    skin: color(255, 255, 255),
+    x: 140,
+    y: 300
+};
+var spring = {
+    skin: color(0, 255, 38),
+    x: 367,
+    y: 300
+};
+var fall = {
+    skin: color(227, 128, 29),
+    x: 474,
+    y: 300
+};
+
+background(23);
+rectMode(CENTER);
+
+// Spring's arms (need to be behind Fall)
+// Arms
+pushMatrix();
+translate(spring.x, spring.y);
+stroke(spring.skin);
+strokeWeight(17);
+noFill();
+bezier(-120, 67, -79, 50, 128, 30, 145, 79);
+popMatrix();
+
+/** FALL */
+    pushMatrix();
+    translate(fall.x, fall.y);
+    scale(1);
+    
+    // Feet
+    noStroke();
+    fill(fall.skin);
+    ellipse(-25, 181, 40, 30);
+    ellipse(41, 181, 40, 30);
+    
+    // Pants
+    pushMatrix();
+    translate(3, 72);
+    rotate(9);
+    fill(16, 92, 130);
+    rect(-3, 79, 32, 60, 10);
+    rotate(-23);
+    rect(3, 79, 32, 60, 10);
+    popMatrix();
+    
+    // Shirt
+    noStroke();
+    fill(176, 176, 176);
+    rect(6, 79, 65, 90, 10);
+    strokeWeight(26);
+    noFill();
+    stroke(130, 130, 130);
+    bezier(-120, 9, -79, 61, 128, -8, 103, 120);
+    noStroke();
+    fill(176);
+    quad(-19, 40, 33, 40, 39, 53, -28, 47);
+    
+    noStroke();
+    // Head
+    fill(fall.skin);
+    pushMatrix();
+    translate(-206, -196);
+    beginShape();
+    vertex(251,113);
+    bezierVertex(219,139,312,209,211,230);
+    bezierVertex(105,207,229,102,250,114);
+    endShape();
+    popMatrix();
+    
+    // Eyes
+    fill(25);
+    ellipse(-10, -7, 10, 20);
+    ellipse(19, -7, 10, 20);
+    
+    // Eyebrows & mouth
+    strokeWeight(2);
+    noFill();
+    stroke(25);
+    arc(3, 10, 40, 17, -7, 154);
+    arc(-15, -25, 20, 10, 35, 124);
+    arc(18, -25, 20, 10, 62, 144);
+    
+    // Hands
+    stroke(fall.skin);
+    strokeWeight(32);
+    point(-120, 45);
+    point(103, 120);
+    popMatrix();
+
+// Summer's arms (need to be behind spring)
+pushMatrix();
+translate(summer.x, summer.y);
+stroke(summer.skin);
+strokeWeight(17);
+noFill();
+bezier(-120, 45, -79, 60, 128, 34, 103, 39);
+strokeWeight(30);
+popMatrix();
+
+/** SPRING */
+    pushMatrix();
+    translate(spring.x, spring.y);
+    scale(1);
+    
+    // Feet
+    noStroke();
+    fill(spring.skin);
+    ellipse(-25, 181, 40, 30);
+    ellipse(41, 181, 40, 30);
+    
+    // Pants
+    pushMatrix();
+    translate(3, 72);
+    rotate(9);
+    fill(204, 204, 204);
+    rect(-3, 79, 32, 60, 10);
+    rotate(-23);
+    rect(3, 79, 32, 60, 10);
+    popMatrix();
+    
+    // Shirt
+    noStroke();
+    fill(49, 148, 44);
+    rect(6, 79, 65, 90, 10);
+    rect(6, 49, 100, 30, 8);
+    
+    // Leaf on shirt
+    fill(0, 255, 60, 150);
+    stroke(255, 255, 255, 100);
+    strokeWeight(13);
+    pushMatrix();
+    scale(0.2);
+    translate(-175, 145);
+    beginShape();
+    vertex(134, 279);
+    bezierVertex(250, 330, 319, 187, 289, 146);
+    bezierVertex(249, 176, 133, 158, 124, 267);
+    bezierVertex(124, 279, 98, 278, 116, 293);
+    endShape(CLOSE);
+    popMatrix();
+    
+    noStroke();
+    // Head
+    fill(spring.skin);
+    pushMatrix();
+    translate(-212, -190);
+    beginShape();
+    vertex(251,113);
+    bezierVertex(219,139,312,209,211,230);
+    bezierVertex(105,207,229,102,250,114);
+    endShape();
+    popMatrix();
+    
+    // Eyes
+    fill(25);
+    ellipse(-10, -7, 10, 20);
+    ellipse(19, -7, 10, 20);
+    
+    // Eyebrows & mouth
+    strokeWeight(2);
+    noFill();
+    stroke(25);
+    arc(3, 10, 40, 17, -7, 154);
+    arc(-15, -25, 20, 10, 35, 124);
+    arc(18, -25, 20, 10, 62, 144);
+    popMatrix();
+
+
+// Winter's arm (needs to be behind Summer)
+pushMatrix();
+translate(winter.x, winter.y);
+strokeWeight(26);
+noFill();
+stroke(23, 138, 232);
+bezier(-108, 49, -79, 69, 128, 13, 130, 31);
+popMatrix();
+
+/** SUMMER */
+    pushMatrix();
+    translate(summer.x, summer.y);
+    scale(1);
+    
+    // Feet
+    noStroke();
+    fill(summer.skin);
+    ellipse(-26, 181, 40, 30);
+    ellipse(41, 181, 40, 30);
+    
+    // Pants
+    pushMatrix();
+    translate(3, 72);
+    rotate(9);
+    fill(245, 196, 139);
+    rect(-3, 79, 32, 60, 10);
+    rotate(-23);
+    rect(3, 79, 32, 60, 10);
+    popMatrix();
+    
+    // Shirt
+    fill(245, 245, 245);
+    rect(6, 79, 65, 90, 10);
+    rect(6, 49, 100, 30, 8);
+    
+    // Head
+    fill(summer.skin);
+    pushMatrix();
+    translate(-212, -190);
+    beginShape();
+    vertex(196,113);
+    bezierVertex(262,148,276,230,219,230);
+    bezierVertex(107,216,229,129,195,115);
+    endShape();
+    popMatrix();
+    
+    // Sunglasses
+    fill(25);
+    bezier(-10, -15, 10, -6, 16, 35, 44, -15);
+    bezier(10, -15, -10, -6, -25, 30, -34, -15);
+    
+    // Eyebrows, mouth, & sunglasses highlights
+    strokeWeight(2);
+    stroke(255);
+    line(-30, -10, -14, -12);
+    line(7, -10, 24, -12);
+    noFill();
+    stroke(25);
+    arc(2, 6, 40, 30, 56, 153);
+    arc(-10, -25, 20, 10, 35, 124);
+    arc(18, -25, 20, 10, 62, 144);
+    popMatrix();
+
+
+
+/** WINTER */
+    pushMatrix();
+    translate(winter.x, winter.y);
+    scale(1);
+    
+    stroke(winter.skin);
+    strokeWeight(30);
+    point(-120, 45);
+    
+    noStroke();
+    fill(winter.skin);
+    ellipse(-25, 181, 40, 30);
+    ellipse(41, 181, 40, 30);
+    
+    pushMatrix();
+    translate(3, 72);
+    rotate(9);
+    fill(204, 204, 204);
+    rect(-3, 79, 32, 60, 10);
+    rotate(-23);
+    rect(3, 79, 32, 60, 10);
+    popMatrix();
+    
+    fill(23, 138, 232);
+    rect(6, 79, 65, 90, 10);
+    noStroke();
+    
+    fill(245);
+    rect(3, 80, 5, 87);
+    
+    fill(winter.skin);
+    pushMatrix();
+    translate(-212, -190);
+    beginShape();
+    vertex(196,113);
+    bezierVertex(262,148,276,230,219,230);
+    bezierVertex(107,216,229,129,195,115);
+    endShape();
+    popMatrix();
+    
+    fill(25);
+    ellipse(-8, -7, 10, 20);
+    ellipse(19, -7, 10, 20);
+    
+    strokeWeight(2);
+    noFill();
+    stroke(25);
+    arc(0, 8, 40, 17, 66, 154);
+    arc(-15, -25, 20, 10, 35, 124);
+    arc(18, -25, 20, 10, 62, 144);
+    popMatrix();
