@@ -18,12 +18,63 @@ var fall = {
     x: 474,
     y: 300
 };
-
-background(23);
 rectMode(CENTER);
 
+// Use mask() for Summer's shirt
+// Flowers on shirt
+var flower = function(x, y){
+    noStroke();
+    fill(0);
+    for(var i = 0; i < 360; i += 60){
+        pushMatrix();
+        translate(x, y);
+        scale(1.2);
+        rotate(i);
+        bezier(20, 0, -3, -20, -35, 20, 19, 0);
+        popMatrix();
+    }
+    fill(255, 255, 0);
+    for(var i = 0; i < 360; i += 60){
+        pushMatrix();
+        translate(x, y);
+        rotate(i);
+        bezier(20, 0, -3, -20, -35, 20, 19, 0);
+        popMatrix();
+    }
+    strokeWeight(1);
+    stroke(0);
+    fill(255);
+    ellipse(x, y, 11, 11);
+};
+
+background(255);
+flower(50, 32);
+flower(50, 116);
+flower(96, 81);
+flower(31, 72);
+var backOfShirt = get(0, 0, 200, 200);
+
+rectMode(CENTER);
+noStroke();
+background(0);
+fill(255, 255, 255);
+rect(66, 79, 65, 90, 10);
+rect(66, 49, 100, 30, 8);
+
+var frontOfShirt = get(0, 0, 200, 200);
+
+backOfShirt.mask(frontOfShirt);
+
+// Background
+background(23);
+strokeWeight(10);
+for(var i = 0; i <= height; i += 10){
+    stroke(lerpColor(
+        color(80, 123, 207), color(202, 217, 247), i/height));
+    line(0, i, width, i);
+}
+
 // Spring's arms (need to be behind Fall)
-// Arms
 pushMatrix();
 translate(spring.x, spring.y);
 stroke(spring.skin);
@@ -36,6 +87,11 @@ popMatrix();
     pushMatrix();
     translate(fall.x, fall.y);
     scale(1);
+    
+    // Shadow
+    noStroke();
+    fill(0, 0, 0, 30);
+    ellipse(25, 187, 131, 45);
     
     // Feet
     noStroke();
@@ -53,7 +109,7 @@ popMatrix();
     rect(3, 79, 32, 60, 10);
     popMatrix();
     
-    // Shirt
+    // Sweatshirt
     noStroke();
     fill(176, 176, 176);
     rect(6, 79, 65, 90, 10);
@@ -65,8 +121,22 @@ popMatrix();
     fill(176);
     quad(-19, 40, 33, 40, 39, 53, -28, 47);
     
-    noStroke();
+    // Pocket
+    fill(130);
+    quad(-10, 90, 20, 90, 30, 110, -20, 110);
+    
+    // Hood strings
+    strokeWeight(2);
+    stroke(255);
+    line(-3, 30, -5, 70);
+    line(8, 30, 10, 65);
+    strokeWeight(5);
+    point(-5, 70);
+    point(10, 65);
+    
     // Head
+    stroke(0, 0, 0, 50);
+    strokeWeight(7);
     fill(fall.skin);
     pushMatrix();
     translate(-206, -196);
@@ -77,6 +147,7 @@ popMatrix();
     endShape();
     popMatrix();
     
+    noStroke();
     // Eyes
     fill(25);
     ellipse(-10, -7, 10, 20);
@@ -111,6 +182,11 @@ popMatrix();
     pushMatrix();
     translate(spring.x, spring.y);
     scale(1);
+    
+    // Shadow
+    noStroke();
+    fill(0, 0, 0, 30);
+    ellipse(14, 187, 109, 45);
     
     // Feet
     noStroke();
@@ -149,7 +225,8 @@ popMatrix();
     endShape(CLOSE);
     popMatrix();
     
-    noStroke();
+    stroke(0, 0, 0, 50);
+    strokeWeight(7);
     // Head
     fill(spring.skin);
     pushMatrix();
@@ -161,6 +238,7 @@ popMatrix();
     endShape();
     popMatrix();
     
+    noStroke();
     // Eyes
     fill(25);
     ellipse(-10, -7, 10, 20);
@@ -190,6 +268,11 @@ popMatrix();
     translate(summer.x, summer.y);
     scale(1);
     
+    // Shadow
+    noStroke();
+    fill(0, 0, 0, 30);
+    ellipse(10, 187, 131, 45);
+    
     // Feet
     noStroke();
     fill(summer.skin);
@@ -207,11 +290,20 @@ popMatrix();
     popMatrix();
     
     // Shirt
-    fill(245, 245, 245);
-    rect(6, 79, 65, 90, 10);
-    rect(6, 49, 100, 30, 8);
+    image(backOfShirt, -60, 0);
+    
+    // Line & buttons
+    stroke(0, 0, 0, 50);
+    strokeWeight(2);
+    line(3, 40, 3, 123);
+    strokeWeight(4);
+    for(var i = 49; i < 119; i += 16){
+        point(8, i);
+    }
     
     // Head
+    stroke(0, 0, 0, 50);
+    strokeWeight(7);
     fill(summer.skin);
     pushMatrix();
     translate(-212, -190);
@@ -246,6 +338,11 @@ popMatrix();
     translate(winter.x, winter.y);
     scale(1);
     
+    // Shadow
+    noStroke();
+    fill(0, 0, 0, 30);
+    ellipse(-3, 187, 131, 45);
+    
     stroke(winter.skin);
     strokeWeight(30);
     point(-120, 45);
@@ -271,6 +368,8 @@ popMatrix();
     fill(245);
     rect(3, 80, 5, 87);
     
+    stroke(0, 0, 0, 50);
+    strokeWeight(7);
     fill(winter.skin);
     pushMatrix();
     translate(-212, -190);
@@ -281,6 +380,7 @@ popMatrix();
     endShape();
     popMatrix();
     
+    noStroke();
     fill(25);
     ellipse(-8, -7, 10, 20);
     ellipse(19, -7, 10, 20);
