@@ -1,3 +1,15 @@
+/**
+ * Always A Good Time
+ * Chester Banks
+ * April 12 2017
+ * 
+ * Made for #PamelaWeek! I wouldn't have ever been able to make this if it weren't for Pamela's lessons! Thank you!
+ * 
+ * From left to right: Winter, Summer, Spring, Fall
+ * 
+ * The "frame" is inspired by Talal Zulfiqar
+*/
+
 var summer = {
     skin: color(227, 227, 34),
     x: 247,
@@ -111,8 +123,13 @@ popMatrix();
     rotate(9);
     fill(16, 92, 130);
     rect(-3, 79, 32, 60, 10);
+    fill(0, 0, 0, 30);
+    rect(6, 85, 10, 50, 10);
     rotate(-23);
+    fill(16, 92, 130);
     rect(3, 79, 32, 60, 10);
+    fill(0, 0, 0, 30);
+    rect(13, 79, 10, 60, 10);
     popMatrix();
     
     // Sweatshirt
@@ -130,6 +147,11 @@ popMatrix();
     // Pocket
     fill(130);
     quad(-10, 90, 20, 90, 30, 110, -20, 110);
+    
+    // Shadows on sweatshirt & pocket
+    fill(0, 0, 0, 30);
+    rect(33, 84, 10, 81, 10);
+    quad(16, 90, 19, 90, 30, 110, 21, 110);
     
     // Hood strings
     strokeWeight(2);
@@ -151,6 +173,13 @@ popMatrix();
     bezierVertex(219,139,312,209,211,230);
     bezierVertex(105,207,229,102,250,114);
     endShape();
+    noFill();
+    strokeWeight(11);
+    stroke(0, 0, 0, 30);
+    bezier(240, 118, 217,139,299,209,211,227);
+    strokeWeight(3);
+    stroke(255, 255, 255, 60);
+    bezier(224, 131, 152,190,175,207,195, 219);
     popMatrix();
     
     noStroke();
@@ -206,8 +235,13 @@ popMatrix();
     rotate(9);
     fill(204, 204, 204);
     rect(-3, 79, 32, 60, 10);
+    fill(0, 0, 0, 30);
+    rect(8, 84, 10, 45, 10);
     rotate(-23);
+    fill(204, 204, 204);
     rect(3, 79, 32, 60, 10);
+    fill(0, 0, 0, 30);
+    rect(15, 77, 10, 60, 10);
     popMatrix();
     
     // Shirt
@@ -215,6 +249,9 @@ popMatrix();
     fill(49, 148, 44);
     rect(6, 79, 65, 90, 10);
     rect(6, 49, 100, 30, 8);
+    fill(0, 0, 0, 30);
+    rect(32, 92, 10, 60, 10);
+    rect(52, 49, 7, 30, 8);
     
     // Leaf on shirt
     fill(0, 255, 60, 150);
@@ -239,9 +276,16 @@ popMatrix();
     translate(-212, -190);
     beginShape();
     vertex(251,113);
-    bezierVertex(219,139,312,209,211,230);
+    bezierVertex(217,139,312,209,211,230);
     bezierVertex(105,207,229,102,250,114);
     endShape();
+    noFill();
+    strokeWeight(11);
+    stroke(0, 0, 0, 30);
+    bezier(240, 118, 217,139,299,209,211,227);
+    strokeWeight(3);
+    stroke(255, 255, 255, 100);
+    bezier(224, 131, 152,190,175,207,204, 220);
     popMatrix();
     
     noStroke();
@@ -378,12 +422,12 @@ popMatrix();
     pushMatrix();
     translate(3, 72);
     rotate(9);
-    fill(204, 204, 204);
+    fill(21, 76, 112);
     rect(-3, 79, 32, 60, 10);
     fill(0, 0, 0, 30);
     rect(-14, 79, 10, 60, 10);
     rotate(-23);
-    fill(204, 204, 204);
+    fill(21, 76, 112);
     rect(3, 79, 32, 60, 10);
     fill(0, 0, 0, 30);
     rect(-8, 86, 10, 42, 10);
@@ -415,6 +459,10 @@ popMatrix();
     bezierVertex(262,148,276,230,219,230);
     bezierVertex(107,216,229,129,195,115);
     endShape();
+    noFill();
+    strokeWeight(11);
+    stroke(0, 0, 0, 30);
+    bezier(196, 155,134,212,212,227,213,228);
     popMatrix();
     
      //Eyes
@@ -452,3 +500,20 @@ popMatrix();
     ellipse(-40, -92, 13, 24);
     popMatrix();
     popMatrix();
+    
+// Text
+textFont(createFont('Century Gothic Italic'), 41);
+textAlign(CENTER, CENTER);
+text('"DOESN\'T MATTER WHEN,', 300, 90);
+textSize(30);
+text('IT\'S ALWAYS A GOOD TIME THEN!"', 300, 130);
+textSize(15);
+text('- Owl City', 430, 160);
+
+// Frame
+noFill();
+stroke(0, 0, 0, 5);
+for(var i = 5; i < 29; i ++){
+    strokeWeight(i);
+    rect(300, 300, width, height);
+}
