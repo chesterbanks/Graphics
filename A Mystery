@@ -1,0 +1,52 @@
+/*
+    S C E N E S
+    1. Hopper leaves shoes on bench
+    2. Hopper comes back and finds shoes missing
+    3. Hopper calls Detective Winston
+    4. Winston arrives
+    5. Winston asks Hopper who was around
+    6. Hopper says that she saw Spunky Sam, OJ Squid, and Purple Pi
+    7. Winston questions Spunky Sam
+    8. Winston questions OJ Squid
+    9. Winston questions Purple Pi
+    10. Winston announces he knows who the thief is
+    11. (WHO STOLE THE SHOES?)
+*/
+
+var vars = {
+    hopperX: 300,
+};
+
+imageMode(CENTER);
+
+draw = function() {
+    background(108, 175, 204);
+    
+    noStroke();
+    fill(186, 186, 186);
+    rect(0, 300, width, 100);
+    
+    for(var i = -300; i < width*1.5; i += 130){
+        stroke(0, 0, 0, 30);
+        strokeWeight(1);
+        line(i/2 + 120, 300, i, height);
+    }
+    
+    noStroke();
+    fill(69, 47, 24);
+    rect(93, 260, 12, 27);
+    rect(254, 260, 12, 27);
+    fill(120, 83, 41);
+    (rect)(80, 260, 200, 24, 20, 20, 0, 0);
+    rect(80, 287, 200, 23);
+    rect(82, 316, 10, 30);
+    rect(268, 316, 10, 30);
+    fill(145, 99, 47);
+    quad(80, 310, 60, 330, 300, 330, 280, 310);
+    rect(65, 330, 10, 30);
+    rect(285, 330, 10, 30);
+    
+    image(getImage("creatures/Hopper-Happy"), 400 + vars.hopperX, 300);
+    
+    vars.hopperX /= 1.1;
+};
