@@ -13,16 +13,112 @@
     11. (WHO STOLE THE SHOES?)
 */
 
-var vars = {
-    hopperX: 300,
+imageMode(CENTER);
+textAlign(CENTER, CENTER);
+textFont(createFont('Avenir'));
+
+var fox = function(x, y, sz, r, colo, colo2, mouth){
+    pushMatrix();
+    translate(x, y);
+    scale(sz / 100);
+    rotate(r);
+    noStroke();
+    fill(0, 0, 0, 20);
+    ellipse(-8, 60, 76, 20); // shadow
+    fill(colo);
+    bezier(-45, -90, 30, -50, -70, -30, -45, -90); // left ear
+    bezier(25, -90, -50, -50, 50, -30, 25, -90); // right ear
+    rect(-38, -32, 60, 80, 20); // Torso
+    rect(-70, -7, 25, 25, 5); // Left hand
+    rect(30, -7, 25, 25, 5); // Right hand
+    arc(8, 62, 25, 25, -180, 0); // top of right foot
+    arc(-25, 62, 25, 25, -180, 0); // bottom of right foot
+    arc(8, 62, 25, 10, 0, 180); // top of left foot
+    arc(-25, 62, 25, 10, 0, 180); // bottom of left foot
+    fill(colo2);
+    rect(-28, -32, 40, 65, 10); // fur in middle torso
+    noFill();
+    strokeWeight(5);
+    stroke(0, 0, 0, 30);
+    arc(-8, -34, 80, 80, 49, 132); // neck shadow
+    noStroke();
+    fill(colo2);
+    bezier(-40, -81, 11, -50, -51, -30, -41, -80); // fur on left ear
+    bezier(21, -80, -35, -50, 32, -38, 20, -80); // fur on right ear
+    fill(colo);
+    ellipse(-8, -32, 75, 75); // head
+    fill(colo2);
+    arc(-8, -33, 75, 76, 20, 155); // fur on head
+    fill(25);
+    ellipse(0, -39, 10, 20);
+    ellipse(-15, -39, 10, 18);
+    arc(-8, -26, 15, 15, 191, 348);
+    noFill();
+    stroke(25);
+    strokeWeight(2);
+    switch(mouth){
+        case 'Smile':
+            arc(-8, -20, 35, 22, 394, 505);
+            break;
+        case 'Sad':
+            arc(-8, -5, 30, -26, 385, 492);
+            break;
+        case 'Surprised':
+            arc(-18, -57, 10, 10, 385, 492);
+            arc(3, -57, 10, 10, 419, 518);
+            fill(0);
+            ellipse(-8, -14, 30, 10);
+            break;
+    }
+    popMatrix();
+};
+var speak = function(x, y, x2, y2, sz, txt){
+    noStroke();
+    fill(255);
+    ellipse(x, y, sz, sz / 2);
+    noFill();
+    strokeWeight(4);
+    stroke(255);
+    bezier(x, y + 49,x + 10, y + 67, x + 18, y + 111, x2, y2);
+    bezier(x + 5, y + 49,x + 10, y + 67, x + 18, y + 111, x2 - 0, y2);
+    bezier(x + 15, y + 49,x + 10, y + 67, x + 18, y + 111, x2, y2);
+    strokeWeight(14);
+    point(x + 9, y + 52);
+    strokeWeight(12);
+    point(x + 10, y + 62);
+    fill(25);
+    textSize(15);
+    text(txt, x - (sz / 2.4), y - (sz / 4.2), sz / 1.2, sz / 2);
 };
 
-imageMode(CENTER);
+var vars = {
+    hopperX: 300,
+    speechBubble1y: 270,
+};
 
 draw = function() {
-    background(108, 175, 204);
+    background(23);
+    strokeWeight(10);
+    for(var i = 0; i <= height; i += 10){
+        stroke(lerpColor(
+            color(40, 107, 161), color(152, 198, 245), i/height));
+        line(0, i, width, i);
+    }
     
     noStroke();
+    fill(48, 148, 53);
+    for(var i = -3; i < width; i += 70){
+        ellipse(i, 264, 80, 80);
+    }
+    fill(59, 184, 67);
+    for(var i = 21; i < width; i += 70){
+        ellipse(i, 273, 80, 80);
+    }
+    fill(62, 212, 72);
+    for(var i = 0; i < width; i += 70){
+        ellipse(i, 282, 80, 80);
+    }
+    
     fill(186, 186, 186);
     rect(0, 300, width, 100);
     
@@ -46,7 +142,12 @@ draw = function() {
     rect(65, 330, 10, 30);
     rect(285, 330, 10, 30);
     
-    image(getImage("creatures/Hopper-Happy"), 400 + vars.hopperX, 300);
+    fox(400 + vars.hopperX, 300, 100, 0, color(222, 118, 44), color(222, 210, 171), (vars.hopperX < 0.1) ? 'Surprised' : 'Smile');
+    
+    speak(250, 130 - vars.speechBubble1y, 324, 263 - vars.speechBubble1y, 270, 'My brand new shoes! I set them on this bench and now they\'re gone! Someone must have stolen them!');
     
     vars.hopperX /= 1.1;
+    if(vars.hopperX < 0.1){
+        vars.speechBubble1y /= 1.1;
+    }
 };
