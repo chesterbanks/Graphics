@@ -1,0 +1,192 @@
+var points = [];
+for(var i = 0; i < width; i += 30){
+    points.push({x: i + random(-10, 10), y: 446 + random(30)});
+}
+
+var keys = [];
+var keyPressed = function(){ keys[keyCode] = true; };
+var keyReleased = function(){ keys[keyCode] = false; };
+
+var Player = function(x, y, w, h){
+    this.x = x; this.originalX = x;
+    this.y = y; this.originalY = y;
+    this.w = 30;
+    this.h = 30;
+    
+    this.xvel = 0;
+    this.yvel = 0;
+    this.speed = 5;
+    
+    this.slow = false;
+    this.slowTimer = 0;
+    
+    this.jumping = false;
+    
+    this.dir = 'left';
+    this.particle = function(x, y, dir){
+        this.x = x;
+        this.y = y;
+        this.dir = dir;
+        this.w = this.h = random(10);
+        this.trans = 255;
+        this.rot = random(10);
+        this.colo = floor(random(2));
+    };
+    this.particles = [];
+    this.particle.prototype.draw = function() {
+        noStroke();
+        if(this.colo === 0){
+            fill(255, 255, 255, this.trans);
+        } else {
+            fill(212, 45, 45, this.trans);
+        }
+        pushMatrix();
+        translate(this.x, this.y);
+        rotate(frameCount*this.rot);
+        ellipse(0, 0, this.w, this.h);
+        popMatrix();
+        
+        this.sz -= 0.01;
+        this.trans -= 10;
+        if(this.dir === 'left'){
+            this.x -= this.w / 2;
+        } else {
+            this.x += this.w / 2;
+        }
+    };
+};
+Player.prototype.draw = function() {
+    for(var i in this.particles){
+        this.particles[i].draw();
+        if(this.particles[i].trans < 0){
+            this.particles.splice(i, 1);
+        }
+    }
+    
+    // The actual player
+    noStroke();
+    fill(0, 0, 0, 50);
+    rectMode(CENTER);
+    (rect)(this.x + (this.w / 2), 435, this.w * 1.1 + (this.y / 7) - 61, this.h / 2 + (this.y / 30) - 12, 3);
+    rectMode(CORNER);
+    fill(224, 178, 119);
+    (rect)(this.x, this.y, this.w, this.h, 3);
+    fill(252, 248, 197);
+    (rect)(this.x, this.y, this.w, this.h / 3, 3);
+    (rect)(this.x, this.y + 5, 2, 10);
+    (rect)(this.x + 28, this.y + 5, 2, 10);
+    arc(this.x + 8, this.y, 30, 26, 0, 90);
+    fill(46, 46, 46);
+    rect(this.xvel + this.x + 9, this.y + 16, 5, 7);
+    rect(this.xvel + this.x + 18, this.y + 16, 5, 7);
+    
+    // Player movement
+    if(keys[LEFT] || keys[65]){
+        this.dir = 'left';
+        this.xvel -= 2;
+    }
+    if(keys[RIGHT] || keys[68]){
+        this.dir = 'right';
+        this.xvel += 2;
+    }
+    if(!keys[LEFT] && !keys[RIGHT] && !keys[65] && !keys[68]){
+        this.xvel /= 1.05;
+    }
+    
+    if ((keys[UP] || keys[87]) && !this.jumping) {
+        this.yvel -= 10;
+        this.jumping = true;
+    }
+    if(this.xvel > this.speed){
+        this.xvel = this.speed;
+    }
+    if(this.xvel < -this.speed){
+        this.xvel = -this.speed;
+    }
+    this.jumping = true;
+    this.x += this.xvel;
+    this.y += this.yvel;
+    this.yvel += 0.6;
+    
+    if (this.y >= 410 && this.yvel > 0) {
+        this.jumping = false;
+        this.yvel = 0;
+        this.y = 410;
+    }
+};
+var player = new Player(200, 200, 50, 50);
+
+var LAYER = color(46, 194, 56);
+var GRASS = color(125, 46, 23);
+var SKY1 = color(23, 148, 232);
+var SKY2 = color(158, 215, 242);
+
+draw = function() {
+    strokeWeight(10);
+    for(var i = 0; i <= height; i += 10){
+        stroke(lerpColor(
+            SKY1, SKY2, i/height));
+        line(0, i, width, i);
+    }
+    
+    noStroke();
+    fill(GRASS);
+    rect(0, 430, width, 70);
+    fill(255, 255, 255, 5);
+    for(var i = 70; i > 0; i -= 5){
+        rect(0, 430, width, i);
+    }
+    
+    noStroke();
+    fill(255, 255, 255, 50);
+    beginShape();
+    vertex(608,147);
+    bezierVertex(644,28,255,238,0,85);
+    bezierVertex(-170,241,458,113,617,272);
+    endShape();
+    fill(255, 255, 255, 20);
+    beginShape();
+    vertex(608,397);
+    bezierVertex(617,120,255,247,0,170);
+    bezierVertex(-170,350,458,69,614,357);
+    endShape();
+    fill(255, 255, 255, 50);
+    beginShape();
+    for(var i in points){
+        vertex(points[i].x, points[i].y);
+    }
+    vertex(600, 440);
+    vertex(0, 444);
+    endShape(CLOSE);
+    fill(0, 0, 0, 30);
+    beginShape();
+    for(var i in points){
+        vertex(points[i].x, points[i].y / 2 + 223);
+    }
+    vertex(600, 438);
+    vertex(0, 440);
+    endShape(CLOSE);
+    fill(LAYER);
+    beginShape();
+    for(var i in points){
+        vertex(points[i].x, points[i].y / 2 + 219);
+    }
+    vertex(635, 425);
+    vertex(-29, 425);
+    endShape(CLOSE);
+    strokeWeight(2);
+    stroke(0, 0, 0, 30);
+    for(var i = 0; i < points.length; i += 2){
+        line(points[i].x, points[i].y / 2 + 219, points[i].x, 437);
+        line(points[i].x - 13, 425, points[i].x, 437);
+        line(points[i].x + 24, 426, points[i].x, 444);
+    }
+    stroke(255, 255, 255, 80);
+    for(var i = 0; i < points.length; i += 2){
+        line(points[i].x - 5, points[i].y / 2 + 219, points[i].x - 5, 437);
+        line(points[i].x - 16, 425, points[i].x - 5, 437);
+        line(points[i].x + 19, 426, points[i].x - 5, 444);
+    }
+    
+    player.draw();
+};
