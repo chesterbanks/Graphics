@@ -1,0 +1,104 @@
+var spots = [];
+for(var i = 0; i <= 1000; i ++){
+    spots.push({x: random(400), y: random(400), sz: random(5), trans: random(80)});
+}
+
+textAlign(CENTER, CENTER);
+textFont(createFont('Avenir'));
+
+rectMode(CENTER);
+background(92, 190, 242);
+
+pushMatrix();
+translate(200, 200);
+noStroke();
+fill(255, 255, 255, 50);
+for(var i = 0; i <= 400; i += 100){
+    ellipse(0, -6, i, i);
+}
+fill(240, 245, 108);
+ellipse(0, -8, 140, 140);
+noFill();
+stroke(255, 255, 255);
+strokeWeight(3);
+beginShape();
+vertex(39, 120);
+vertex(43, 84);
+bezierVertex(43, 72, 50, 63, 53, 60);
+bezierVertex(176, -69, -72, -177, -86, -6);
+bezierVertex(-86, 6, -94, 11, -95, 14);
+vertex(-112, 36);
+bezierVertex(-103, 45, -100, 40, -96, 44);
+bezierVertex(-91, 52, -96, 106, -85, 108);
+bezierVertex(-72, 108, -41, 99, -45, 101);
+bezierVertex(-29, 96, -44, 116, -32, 151);
+bezierVertex(-25, 171, 21, 216, 39, 120);
+endShape();
+beginShape();
+vertex(-10, 122);
+bezierVertex(-13, 92, -5, -27, -31, -14);
+bezierVertex(-46, 15, 16, 7, 4, -30);
+bezierVertex(-20, -31, 0, 3, 21, 0);
+bezierVertex(56, -4, 20, -33, 18, 0);
+bezierVertex(13, 42, 13, 56, 16, 122);
+endShape();
+noStroke();
+fill(255, 255, 255);
+rect(0, 127, 92, 17, 20);
+rect(0, 140, 86, 13, 20);
+rect(0, 153, 78, 13, 20);
+rect(0, 165, 63, 10, 20);
+popMatrix();
+
+
+fill(240, 245, 108);
+textSize(20);
+text('BE', 74, 19);
+pushMatrix();
+translate(5, 0);
+scale(0.9);
+rectMode(CORNER);
+pushMatrix();
+noStroke();
+translate(0, 5);
+fill(0, 0, 0, 30);
+arc(60, 70, 70, 70, -315, -45);
+triangle(90, 35, 90, 105, 131, 105);
+rect(90, 34, 15, 35);
+arc(105, 59, 50, 50, -90, 90);
+rect(140, 35, 40, 70);
+triangle(210, 35, 235, 105, 185, 105);
+rect(237, 35, 25, 70);
+rect(225, 35, 50, 25);
+rect(280, 35, 25, 70);
+triangle(335, 105, 360, 35, 310, 35);
+rect(365, 35, 40, 70);
+popMatrix();
+fill(255);
+arc(60, 70, 70, 70, -315, -45);
+triangle(90, 35, 90, 105, 131, 105);
+rect(90, 34, 15, 35);
+arc(105, 59, 50, 50, -90, 90);
+rect(140, 35, 40, 70);
+triangle(210, 35, 235, 105, 185, 105);
+rect(237, 35, 25, 70);
+rect(225, 35, 50, 25);
+rect(280, 35, 25, 70);
+triangle(335, 105, 360, 35, 310, 35);
+rect(365, 35, 40, 70);
+stroke(112, 210, 255);
+strokeWeight(2);
+line(107, 87, 107, 105);
+line(179, 80, 160, 80);
+line(179, 60, 160, 60);
+line(210, 87, 210, 105);
+line(335, 35, 335, 65);
+line(411, 80, 385, 80);
+line(406, 60, 385, 60);
+popMatrix();
+
+noStroke();
+for(var i in spots){
+    fill(255, 255, 255, spots[i].trans);
+    ellipse(spots[i].x, spots[i].y, spots[i].sz, spots[i].sz);
+}
