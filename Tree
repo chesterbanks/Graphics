@@ -1,0 +1,91 @@
+// Inspired by: https://codepen.io/schmidtsonian/pen/pbvEZg
+
+pushMatrix();
+translate(233, 187);
+noStroke();
+
+// left back chunk
+fill(220, 231, 232);
+triangle(-165, 1, -51, 41, -48, -47);
+fill(95, 117, 120);
+triangle(-165, 1, -51, 39, -102, 65);
+fill(181, 197, 199);
+triangle(-113, 84, -51, 39, -102, 65);
+triangle(-113, 84, -51, 39, -33, 57);
+fill(147, 170, 173);
+triangle(-113, 84, -53, 99, -36, 57);
+fill(108, 130, 133);
+triangle(-5, 53, -53, 99, -36, 57);
+
+// right back chunk
+fill(220, 231, 232);
+triangle(-22, 1, 89, -64, 34, -47);
+fill(114, 145, 148);
+triangle(-22, 1, 89, -64, 71, 14);
+
+// second chunk
+fill(195, 218, 219);
+triangle(26, -1, 19, -115, 61, -16);
+fill(114, 145, 148);
+triangle(-22, 54, 4, 92, 24, 14);
+fill(175, 196, 199);
+triangle(0, -27, 105, -13, 11, 63);
+triangle(78, 75, 81, 26, 12, 63);
+fill(128, 159, 163);
+triangle(80, 33, 105, -13, 11, 63);
+triangle(78, 75, 54, 100, 12, 63);
+fill(185, 199, 201);
+triangle(2, 92, 54, 100, 12, 63);
+
+// front chunk
+fill(206, 217, 219);
+triangle(0, 0, -106, -66, 20, -117);
+fill(167, 182, 184);
+triangle(0, 0, 40, -18, 20, -117);
+triangle(0, -1, 40, -19, 34, 26);
+fill(95, 125, 130);
+triangle(0, 0, -106, -66, -66, -13);
+fill(175, 196, 199);
+triangle(0, 0, -104, 38, -66, -14);
+fill(101, 127, 130);
+triangle(-1, 43, -104, 37, -40, 65);
+fill(128, 155, 158);
+triangle(-1, 44, -104, 38, 11, 26);
+fill(128, 155, 158);
+triangle(1, -1, -104, 38, 34, 26);
+
+// tree tint
+fill(255, 128, 0, 130);
+beginShape();
+vertex(-106, -65);
+vertex(20, -117);
+vertex(47, -50);
+vertex(90, -64);
+vertex(79, -17);
+vertex(106, -13);
+vertex(81, 33);
+vertex(79, 75);
+vertex(54, 100);
+vertex(4, 92);
+vertex(-20, 59);
+vertex(-53, 98);
+vertex(-113, 84);
+vertex(-104, 64);
+vertex(-166, 1);
+vertex(-80, -33);
+endShape();
+
+// trunk
+fill(127, 138, 145);
+triangle(-20, 20, -40, 160, 0, 160);
+fill(102, 114, 122);
+triangle(-20, 14, -40, 160, -27, 160);
+triangle(-30, 125, -47, 160, -27, 160);
+fill(121, 131, 138);
+triangle(-20, 27, -12, 160, 0, 160);
+triangle(28, 82, -12, 99, -9, 118);
+triangle(-50, 64, -28, 75, -29, 69);
+fill(86, 94, 99);
+triangle(28, 82, -12, 106, -9, 118);
+triangle(-50, 64, -28, 75, -29, 89);
+popMatrix();
