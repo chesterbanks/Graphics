@@ -1,0 +1,46 @@
+var haze = function(color, y){
+    fill(color);
+    for(var i = 60; i < 200; i += 6){
+        rect(300, y, 600, i);
+    }
+};
+
+rectMode(CENTER);
+noStroke();
+background(41, 7, 7);
+
+haze(color(196, 47, 47, 2), 120);
+haze(color(247, 137, 19, 4), 240);
+haze(color(235, 247, 69, 3), 349);
+haze(color(77, 245, 68, 1), 415);
+haze(color(12, 146, 235, 5), 415);
+haze(color(35, 46, 173, 5), 507);
+
+noStroke();
+for(var i = 0; i < 600; i += 5){
+    (fill)(random(255), random(30));
+    rect(300, i, random(1000), random(10));
+}
+
+filter(BLUR, 2);
+
+for(var i = 0; i < 437; i ++){
+    stroke(255, 255, 255, random(100));
+    strokeWeight(random(6));
+    point(random(width), random(400));
+}
+
+
+noStroke();
+fill(1, 26, 3);
+rect(300, 577, 600, 100);
+
+noFill();
+for(var i = 0; i < 1037; i ++){
+    stroke(35 - random(100), 126 + random(-80, -50), 45 - random(45));
+    strokeWeight(random(5));
+    pushMatrix();
+    translate(random(600), random(540, 627));
+    bezier(0, 0, -4 + random(10), -9, -3 + random(10), -34, random(5), -25);
+    popMatrix();
+}
